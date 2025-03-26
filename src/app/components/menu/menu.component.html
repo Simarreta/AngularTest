@@ -1,0 +1,24 @@
+<!-- Menú lateral -->
+<div class="menu-container">
+  <div class="menu-header">
+    <h2>Menu</h2>
+    <button class="close-menu" (click)="closeMenu()">✕</button>
+  </div>
+  <ul class="menu-options">
+    <li [class.active]="activeMenu === 'canciones'" (click)="selectMenu('canciones')">
+      <a>Canciones</a>
+      <span class="arrow-icon">→</span>
+    </li>
+    <li [class.active]="activeMenu === 'artistas'" (click)="selectMenu('artistas')">
+      <a>Artistas</a>
+      <span class="arrow-icon">→</span>
+    </li>
+    <li [class.active]="activeMenu === 'companias'" (click)="selectMenu('companias')">
+      <a>Compañías discográficas</a>
+      <span class="arrow-icon">→</span>
+    </li>
+  </ul>
+</div>
+
+<!-- Overlay para cuando el menú está abierto (siempre presente, solo cambia su visibilidad) -->
+<div class="menu-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
