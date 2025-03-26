@@ -1,0 +1,316 @@
+/* Variables */
+:host {
+  --border-color: #ddd;
+  --text-color: #333;
+  --secondary-color: #666;
+  --background-color: #fff;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --menu-width: 280px;
+  
+  /* Nueva paleta de colores azules */
+  --primary-color: #2c3e50;        /* Azul muy oscuro para el header */
+  --primary-light: #3498db;        /* Azul claro para hover */
+  --primary-medium: #2980b9;       /* Azul medio para elementos activos */
+  --primary-dark: #1a5276;         /* Azul oscuro para contraste */
+  --accent-color: #ecf0f1;         /* Color claro para acentos */
+  display: block;
+}
+
+/* Soporte para versión móvil */
+:host.mobile-menu {
+  /* Aseguramos que el host del componente tenga posición fija */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+:host.mobile-menu.open {
+  pointer-events: auto;
+}
+
+/* Estilos para móvil (por defecto) */
+.menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--menu-width);
+  height: 100vh;
+  background-color: var(--primary-medium);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: var(--shadow);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Cuando el menú está abierto */
+:host.mobile-menu.open .menu-container {
+  transform: translateX(0);
+}
+
+/* Cabecera del menú */
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+.menu-header h2 {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Opciones del menú */
+.menu-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-options li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-options li:hover {
+  background-color: var(--primary-light);
+}
+
+.menu-options li a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  font-size: 1rem;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.menu-options li.active {
+  background-color: var(--primary-dark);
+}
+
+.menu-options li.active a {
+  color: white;
+  font-weight: bold;
+}
+
+/* Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+:host.mobile-menu.open .menu-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilos para tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Reset de estilos móviles para tablet */
+  :host {
+    width: auto;
+  }
+  
+  :host.mobile-menu {
+    display: none;  /* No se muestra el menú móvil en tablet */
+  }
+  
+  .menu-container {
+    position: relative;
+    transform: none;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    border-right: none;
+    background-color: var(--primary-medium);
+    border-radius: 4px;
+    padding: 0 6px;
+  }
+  
+  .menu-header {
+    display: none;
+  }
+  
+  .menu-options {
+    display: flex;
+    border-bottom: none;
+  }
+  
+  .menu-options li {
+    border-bottom: none;
+    border-right: none;
+    margin: 0 1px;
+    border-radius: 4px;
+    position: relative;
+    background-color: transparent;
+  }
+  
+  .menu-options li a {
+    color: white;
+    padding: 6px 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  .menu-options li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu-options li:hover a {
+    color: white;
+  }
+  
+  .menu-options li.active {
+    background-color: var(--primary-dark);
+  }
+  
+  .menu-options li.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 1.5px;
+  }
+  
+  .menu-options li.active a {
+    color: white;
+    font-weight: bold;
+  }
+  
+  .arrow-icon {
+    display: none;
+  }
+  
+  .menu-overlay {
+    display: none;
+  }
+}
+
+/* Estilos para desktop */
+@media (min-width: 1024px) {
+  /* Reset de estilos móviles para desktop */
+  :host {
+    width: auto;
+  }
+  
+  :host.mobile-menu {
+    display: none;  /* No se muestra el menú móvil en desktop */
+  }
+  
+  .menu-container {
+    position: relative;
+    transform: none;
+    width: auto;
+    height: auto;
+    box-shadow: none;
+    border-right: none;
+    background-color: var(--primary-medium);
+    border-radius: 4px;
+    padding: 0 10px;
+  }
+  
+  .menu-header {
+    display: none;
+  }
+  
+  .menu-options {
+    display: flex;
+    border-bottom: none;
+  }
+  
+  .menu-options li {
+    border-bottom: none;
+    border-right: none;
+    margin: 0 2px;
+    border-radius: 4px;
+    position: relative;
+    background-color: transparent;
+  }
+  
+  .menu-options li a {
+    color: white;
+    padding: 8px 12px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .menu-options li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .menu-options li:hover a {
+    color: white;
+  }
+  
+  .menu-options li.active {
+    background-color: var(--primary-dark);
+  }
+  
+  .menu-options li.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 1.5px;
+  }
+  
+  .menu-options li.active a {
+    color: white;
+    font-weight: bold;
+  }
+  
+  .arrow-icon {
+    display: none;
+  }
+  
+  .menu-overlay {
+    display: none;
+  }
+}
