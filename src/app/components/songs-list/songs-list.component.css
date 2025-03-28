@@ -1,0 +1,132 @@
+.songs-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.songs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.song-item {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.song-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.song-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.song-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.song-item:hover .song-image img {
+  transform: scale(1.05);
+}
+
+.song-details {
+  padding: 15px;
+}
+
+.song-details h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.song-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.genre {
+  color: #2196F3;
+  font-weight: 500;
+}
+
+.year {
+  color: #666;
+}
+
+.duration {
+  color: #666;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #FFC107;
+}
+
+.star {
+  color: #FFC107;
+}
+
+@media (max-width: 768px) {
+  .songs-list {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+.add-song-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 1000;
+}
+
+.add-song-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(33, 150, 243, 0.4);
+}
+
+.plus-icon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.button-text {
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .add-song-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
