@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   navigateTo(view: string) {
     this.currentView = view;
     if (view === 'canciones') {
-      this.router.navigate(['/canciones']);
+      this.router.navigate(['/songs']);
     } else {
       this.router.navigate(['/']);
     }

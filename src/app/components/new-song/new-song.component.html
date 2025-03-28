@@ -1,0 +1,102 @@
+<div class="new-song-container">
+  <div class="form-header">
+    <a class="back-link" routerLink="/songs">
+      ← Volver
+    </a>
+    <h1>Nueva canción</h1>
+  </div>
+
+  <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="song-form">
+    <div class="form-group">
+      <label for="title">Título</label>
+      <input id="title" type="text" formControlName="title" placeholder="Ingrese el título de la canción">
+    </div>
+
+    <div class="form-group">
+      <label for="artist">Artista</label>
+      <input id="artist" type="text" formControlName="artist" placeholder="Ingrese el nombre del artista">
+    </div>
+
+    <div class="form-group">
+      <label for="genre">Género</label>
+      <div class="input-container">
+        <input id="genre" type="text" formControlName="genre" placeholder="Añade un género">
+        <button type="button" class="add-button" (click)="addGenre()">+</button>
+      </div>
+      <div class="chips-container" *ngIf="genres.length > 0">
+        <div class="chip" *ngFor="let genre of genres">
+          {{ genre }}
+          <span class="remove-chip" (click)="removeGenre(genre)">×</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="company">Compañía discográfica</label>
+      <div class="input-container">
+        <input id="company" type="text" formControlName="company" placeholder="Añade una compañía">
+        <button type="button" class="add-button" (click)="addCompany()">+</button>
+      </div>
+      <div class="chips-container" *ngIf="companies.length > 0">
+        <div class="chip" *ngFor="let company of companies">
+          {{ company }}
+          <span class="remove-chip" (click)="removeCompany(company)">×</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="country">País</label>
+      <div class="input-container">
+        <ng-container *ngIf="isLoadingCountries; else countrySelect">
+          <mat-spinner diameter="24"></mat-spinner>
+        </ng-container>
+        <ng-template #countrySelect>
+          <select id="country" formControlName="country">
+            <option value="">Seleccione un país</option>
+            <option *ngFor="let country of countries" [value]="country.code">
+              {{country.name}}
+            </option>
+          </select>
+        </ng-template>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="year">Año</label>
+      <div class="input-container">
+        <input id="year" 
+               type="date" 
+               formControlName="year" 
+               [max]="maxDate"
+               min="1900-01-01"
+               placeholder="Indique el año">
+        <mat-icon class="calendar-icon">calendar_today</mat-icon>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="duration">Duración (segundos)</label>
+      <input id="duration" type="number" formControlName="duration" placeholder="Ingrese la duración en segundos">
+    </div>
+
+    <div class="form-group">
+      <label for="rating">Puntuación</label>
+      <input id="rating" type="number" formControlName="rating" placeholder="Indique la puntuación">
+    </div>
+
+    <div class="form-group">
+      <label for="poster">URL del Poster</label>
+      <input id="poster" type="url" formControlName="poster" placeholder="Ingrese la URL de la imagen">
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="button button-secondary" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button type="submit" class="button button-primary" [disabled]="!isFormValid()">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

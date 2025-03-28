@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { SongsListComponent } from './components/songs-list/songs-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { SongsListComponent } from './components/songs-list/songs-list.component';
+import { NewSongComponent } from './components/new-song/new-song.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'canciones', component: SongsListComponent }
+  { path: 'songs', component: SongsListComponent },
+  { path: 'songs/new', component: NewSongComponent }
 ];

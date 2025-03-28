@@ -1,24 +1,30 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnChanges {
   @Input() isMenuOpen: boolean = false;
-  @Input() activeMenu: string = 'canciones'; // Por defecto, la sección activa es Canciones
+  @Input() activeMenu: string = 'songs'; // Por defecto, la sección activa es Canciones
   
   @Output() menuSelected = new EventEmitter<string>();
   @Output() menuClosed = new EventEmitter<void>();
   
   ngOnChanges(changes: SimpleChanges): void {
-    // Cuando isMenuOpen cambia, asegurarnos de que el overlay también se actualice
     if (changes['isMenuOpen']) {
-      console.log('Estado del menú cambiado:', this.isMenuOpen);
+      if (!this.isMenuOpen) {
+        // Asegurarse de que el overlay se oculte cuando el menú se cierra
+        const overlay = document.querySelector('.menu-overlay') as HTMLElement;
+        if (overlay) {
+          overlay.classList.remove('active');
+        }
+      }
     }
   }
 
