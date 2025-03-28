@@ -1,0 +1,21 @@
+<div class="songs-container">
+  <div class="songs-list">
+    <div *ngFor="let song of songs" class="song-item">
+      <div class="song-image">
+        <img [src]="song.poster" [alt]="song.title">
+      </div>
+      <div class="song-details">
+        <h3>{{ song.title }}</h3>
+        <div class="song-info">
+          <span class="genre">{{ song.genre.join(', ') }}</span>
+          <span class="year">{{ song.year }}</span>
+          <span class="duration">{{ (song.duration / 60).toFixed(2) }} min</span>
+          <div class="rating">
+            <span class="star">⭐</span>
+            <span>{{ song.rating.toFixed(1) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

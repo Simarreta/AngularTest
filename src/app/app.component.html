@@ -2,7 +2,7 @@
 <div class="app-container">
   <!-- Header/Navbar -->
   <header class="app-header">
-    <div class="logo">MusicApp</div>
+    <div class="logo" (click)="navigateTo('home')">MusicApp</div>
     
     <!-- Menú para desktop y tablet -->
     <app-menu *ngIf="isDesktop || isTablet" 
@@ -28,22 +28,9 @@
             (menuClosed)="closeMenu()">
   </app-menu>
 
-  <!-- Contenido Principal Simplificado -->
-  <main class="main-content">
-    <div class="welcome-message">
-      <h1>Bienvenido a MusicApp</h1>
-      <p>Selecciona una opción del menú para comenzar.</p>
-      <p>Vista actual: <strong>{{ currentView }}</strong></p>
-      <p class="device-type">Tipo de dispositivo: <strong>{{ 
-        isDesktop ? 'Desktop' : 
-        isTablet ? 'Tablet' : 
-        'Móvil' 
-      }}</strong></p>
-      <p *ngIf="isMobile" class="menu-state">
-        Estado del menú: <strong>{{ isMenuOpen ? 'Abierto' : 'Cerrado' }}</strong>
-      </p>
-    </div>
-  </main>
+  <!-- Contenedor central para el contenido -->
+  <div class="content-wrapper">
+    <!-- Contenido de las rutas -->
+    <router-outlet></router-outlet>
+  </div>
 </div>
-
-<router-outlet></router-outlet>
