@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SongsService } from '../../services/songs.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-songs-list',
@@ -12,7 +13,10 @@ import { SongsService } from '../../services/songs.service';
 export class SongsListComponent implements OnInit {
   songs: any[] = [];
 
-  constructor(private songsService: SongsService) { }
+  constructor(
+    private songsService: SongsService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.songsService.getSongs().subscribe({
@@ -24,5 +28,9 @@ export class SongsListComponent implements OnInit {
         console.error('Error al obtener las canciones:', error);
       }
     });
+  }
+
+  onAddSong(): void {
+    this.router.navigate(['/songs/new']);
   }
 }
