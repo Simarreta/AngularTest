@@ -1,77 +1,95 @@
-<div class="song-detail-container">
+<div class="song">
   <!-- Cabecera con botón de regreso y título -->
-  <header class="song-header">
-    <button class="back-button" (click)="navigateBack()">←</button>
-    <h1 class="song-title" *ngIf="song">{{ song.title }}</h1>
+  <header class="song__header">
+    <button class="song__back-button" (click)="navigateBack()">←</button>
+    <h1 class="song__title" *ngIf="song">{{ song.title }}</h1>
   </header>
 
   <!-- Mensaje de carga -->
-  <div class="loading-message" *ngIf="!song">
+  <div class="song__loading" *ngIf="!song">
     {{ 'song.loading' | transloco }}
   </div>
 
   <!-- Contenido principal de la canción -->
-  <div class="song-content" *ngIf="song">
-    <h2 class="song-title-main">{{ song.title }}</h2>
-    
-    <!-- Imagen de la canción -->
-    <div class="song-image-container">
-      <div class="song-image-placeholder" *ngIf="!song.poster">
-        <!-- Aquí iría la imagen real -->
+  <div class="song__content" *ngIf="song">
+    <div class="song__main-column">
+      <h2 class="song__title-main">{{ song.title }}</h2>
+      
+      <!-- Imagen de la canción -->
+      <div class="song__image-container">
+        <div class="song__image-placeholder" *ngIf="!song.poster">
+          <!-- Aquí iría la imagen real -->
+        </div>
+        <img *ngIf="song.poster" [src]="song.poster" [alt]="song.title" class="song__image">
       </div>
-      <img *ngIf="song.poster" [src]="song.poster" [alt]="song.title" class="song-image">
+      
+      <!-- Etiquetas de género -->
+      <div class="song__tags">
+        <ng-container *ngFor="let genre of song.genre">
+          <span class="song__tag song__tag--genre"># {{ genre }}</span>
+        </ng-container>
+      </div>
+      
+      <!-- Botones de acción mobile -->
+      <div class="song__actions song__actions--mobile">
+        <button class="song__button song__button--edit" (click)="editSong()" [attr.aria-label]="'song.actions.edit' | transloco">
+          <span class="song__button-icon">✎</span>
+        </button>
+        <button class="song__button song__button--delete" (click)="deleteSong()" [attr.aria-label]="'song.actions.delete' | transloco">
+          <span class="song__button-icon">✕</span>
+        </button>
+      </div>
     </div>
     
-    <!-- Etiquetas de género -->
-    <div class="song-tags">
-      <ng-container *ngFor="let genre of song.genre">
-        <span class="tag genre-tag"># {{ genre }}</span>
-      </ng-container>
-    </div>
-    
-    <!-- Sección de detalles -->
-    <div class="song-details">
-      <!-- Género -->
-      <section class="detail-section">
-        <h3>{{ 'song.details.genre' | transloco }}</h3>
-        <div class="tags-container">
-          <span *ngFor="let genre of song.genre" class="tag">
-            {{ genre }} <button class="remove-tag">✕</button>
-          </span>
-        </div>
-      </section>
-      
-      <!-- Compañía discográfica -->
-      <section class="detail-section">
-        <h3>{{ 'song.details.recordCompany' | transloco }}</h3>
-        <div class="tags-container">
-          <span *ngFor="let label of song.recordCompany" class="tag">
-            {{ label }} <button class="remove-tag">✕</button>
-          </span>
-        </div>
-      </section>
-      
-      <!-- País -->
-      <section class="detail-section">
-        <h3>{{ 'song.details.country' | transloco }}</h3>
-        <p>{{ song.country }}</p>
-      </section>
-      
-      <!-- Año -->
-      <section class="detail-section">
-        <h3>{{ 'song.details.year' | transloco }}</h3>
-        <p>{{ song.year }}</p>
+    <!-- Columna de detalles -->
+    <div class="song__details-column">
+      <!-- Sección de detalles -->
+      <div class="song__details">
+        <!-- Género -->
+        <section class="song__section">
+          <h3 class="song__section-title">{{ 'song.details.genre' | transloco }}</h3>
+          <div class="song__tags-container">
+            <span *ngFor="let genre of song.genre" class="song__tag">
+              {{ genre }} <button class="song__tag-remove">✕</button>
+            </span>
+          </div>
+        </section>
         
-        <!-- Botones de acción -->
-        <div class="action-buttons">
-          <button class="edit-button" (click)="editSong()" [attr.aria-label]="'song.actions.edit' | transloco">
-            <span class="edit-icon">✎</span>
+        <!-- Compañía discográfica -->
+        <section class="song__section">
+          <h3 class="song__section-title">{{ 'song.details.recordCompany' | transloco }}</h3>
+          <div class="song__tags-container">
+            <span *ngFor="let label of song.recordCompany" class="song__tag">
+              {{ label }} <button class="song__tag-remove">✕</button>
+            </span>
+          </div>
+        </section>
+        
+        <!-- País -->
+        <section class="song__section">
+          <h3 class="song__section-title">{{ 'song.details.country' | transloco }}</h3>
+          <p class="song__text">{{ song.country }}</p>
+        </section>
+        
+        <!-- Año -->
+        <section class="song__section">
+          <h3 class="song__section-title">{{ 'song.details.year' | transloco }}</h3>
+          <p class="song__text">{{ song.year }}</p>
+        </section>
+        
+        <!-- Botones de acción desktop -->
+        <div class="song__actions song__actions--desktop">
+          <button class="song__button song__button--edit" (click)="editSong()" [attr.aria-label]="'song.actions.edit' | transloco">
+            <span class="song__button-icon">✎</span>
           </button>
-          <button class="delete-button" (click)="deleteSong()" [attr.aria-label]="'song.actions.delete' | transloco">
-            <span class="delete-icon">✕</span>
+          <button class="song__button song__button--delete" (click)="deleteSong()" [attr.aria-label]="'song.actions.delete' | transloco">
+            <span class="song__button-icon">✕</span>
           </button>
         </div>
-      </section>
+      </div>
     </div>
+    
+    <!-- Footer para espacio final -->
+    <div class="song__footer"></div>
   </div>
 </div>

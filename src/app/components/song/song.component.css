@@ -1,16 +1,30 @@
 /* Contenedor principal */
-.song-detail-container {
+.song {
   width: 100%;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: auto;
+  padding-bottom: 30px;
+}
+
+.song::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(240,240,240,1));
+  border-radius: 0 0 8px 8px;
 }
 
 /* Cabecera con botón de regreso */
-.song-header {
+.song__header {
   display: flex;
   align-items: center;
   padding: 16px;
@@ -18,7 +32,7 @@
   background-color: #f9f9f9;
 }
 
-.back-button {
+.song__back-button {
   background: none;
   border: none;
   font-size: 20px;
@@ -28,7 +42,7 @@
   margin-right: 12px;
 }
 
-.song-title {
+.song__title {
   font-size: 18px;
   font-weight: 500;
   margin: 0;
@@ -36,26 +50,26 @@
 }
 
 /* Contenido principal */
-.song-content {
+.song__content {
   padding: 20px;
 }
 
-.song-title-main {
-  font-size: 20px;
+.song__title-main {
+  font-size: 24px;
   font-weight: 600;
   margin: 0 0 20px 0;
   color: #333;
 }
 
 /* Contenedor de imagen */
-.song-image-container {
+.song__image-container {
   width: 100%;
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
 }
 
-.song-image-placeholder {
+.song__image-placeholder {
   width: 300px;
   height: 200px;
   background-color: #e0e0e0;
@@ -66,44 +80,45 @@
   position: relative;
 }
 
-.song-image-placeholder::before,
-.song-image-placeholder::after {
+.song__image-placeholder::before,
+.song__image-placeholder::after {
   content: '';
   position: absolute;
   background-color: #bdbdbd;
   border-radius: 2px;
 }
 
-.song-image-placeholder::before {
+.song__image-placeholder::before {
   width: 80%;
   height: 2px;
   transform: rotate(45deg);
 }
 
-.song-image-placeholder::after {
+.song__image-placeholder::after {
   width: 80%;
   height: 2px;
   transform: rotate(-45deg);
 }
 
 /* Imagen real de la canción */
-.song-image {
-  width: 300px;
+.song__image {
+  width: 100%;
+  max-width: 400px;
   height: auto;
-  max-height: 300px;
+  max-height: 400px;
   object-fit: contain;
   border-radius: 4px;
 }
 
 /* Etiquetas de género */
-.song-tags {
+.song__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 24px;
 }
 
-.genre-tag {
+.song__tag--genre {
   background-color: transparent;
   color: #757575;
   font-weight: 500;
@@ -111,37 +126,37 @@
 }
 
 /* Secciones de detalles */
-.song-details {
+.song__details {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
-.detail-section {
+.song__section {
   margin-bottom: 16px;
 }
 
-.detail-section h3 {
+.song__section-title {
   font-size: 16px;
   font-weight: 500;
   color: #757575;
   margin: 0 0 8px 0;
 }
 
-.detail-section p {
+.song__text {
   font-size: 16px;
   color: #333;
   margin: 0;
 }
 
 /* Contenedor de etiquetas */
-.tags-container {
+.song__tags-container {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.tag {
+.song__tag {
   display: inline-flex;
   align-items: center;
   background-color: #f5f5f5;
@@ -151,7 +166,7 @@
   color: #333;
 }
 
-.remove-tag {
+.song__tag-remove {
   background: none;
   border: none;
   color: #757575;
@@ -162,18 +177,16 @@
 }
 
 /* Botones de acción */
-.action-buttons {
+.song__actions {
   display: flex;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 24px;
   justify-content: flex-end;
 }
 
-.edit-button,
-.delete-button {
+.song__button {
   width: 40px;
   height: 40px;
-  background-color: #ffeded;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -181,35 +194,162 @@
   align-items: center;
   justify-content: center;
   font-size: 18px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.edit-button {
+.song__button:hover {
+  transform: scale(1.05);
+}
+
+.song__button--edit {
   background-color: #f5f5f5;
   color: #333;
 }
 
-.delete-button {
+.song__button--edit:hover {
+  background-color: #e0e0e0;
+}
+
+.song__button--delete {
   background-color: #e53935;
   color: white;
 }
 
-/* Responsividad */
-@media (max-width: 767px) {
-  .song-detail-container {
-    border-radius: 0;
-    box-shadow: none;
-  }
-  
-  .song-content {
-    padding: 16px;
-  }
+.song__button--delete:hover {
+  background-color: #d32f2f;
 }
 
-.loading-message {
+/* Acciones específicas para móvil/desktop */
+.song__actions--mobile {
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.song__actions--desktop {
+  display: none;
+}
+
+/* Mensaje de carga */
+.song__loading {
   text-align: center;
   padding: 20px;
   font-size: 16px;
   color: #666;
+}
+
+/* Footer para espacio adicional */
+.song__footer {
+  width: 100%;
+  height: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Responsividad para móvil */
+@media (max-width: 767px) {
+  .song {
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .song__content {
+    padding: 16px;
+  }
+  
+  .song__actions--mobile {
+    display: flex;
+  }
+  
+  .song__actions--desktop {
+    display: none;
+  }
+}
+
+/* Diseño responsive para tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .song__content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .song__main-column {
+    width: 100%;
+  }
+  
+  .song__details-column {
+    width: 100%;
+  }
+  
+  .song__image {
+    max-width: 500px;
+  }
+  
+  .song__actions--mobile {
+    display: none;
+  }
+  
+  .song__actions--desktop {
+    display: flex;
+  }
+}
+
+/* Diseño responsive para desktop */
+@media (min-width: 1024px) {
+  .song {
+    padding: 0 0 30px 0;
+    margin-bottom: 30px;
+  }
+  
+  .song__content {
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    position: relative;
+  }
+  
+  .song__main-column {
+    flex: 1;
+    max-width: 60%;
+  }
+  
+  .song__details-column {
+    flex: 1;
+    max-width: 40%;
+  }
+  
+  .song__image-container {
+    margin-bottom: 30px;
+  }
+  
+  .song__image {
+    max-width: 100%;
+  }
+  
+  .song__details {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .song__section {
+    margin-bottom: 24px;
+  }
+  
+  .song__actions--mobile {
+    display: none;
+  }
+  
+  .song__actions--desktop {
+    display: flex;
+  }
+  
+  .song__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
+  }
 }
 
 .debug-translations {

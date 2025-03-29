@@ -1,12 +1,13 @@
 .song-form {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px 80px;
+  padding: 40px 20px 30px;
   background-color: #fff;
-  min-height: calc(100vh - 80px);
+  min-height: auto;
   border-radius: 0 0 8px 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   position: relative;
+  margin-bottom: 30px;
 }
 
 .song-form__header {
@@ -34,6 +35,7 @@
 
 .song-form__container {
   width: 100%;
+  position: relative;
 }
 
 .song-form__grid {
@@ -236,6 +238,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: not-allowed;
 }
 
+.song-form__footer {
+  width: 100%;
+  height: 20px;
+  margin-top: 20px;
+  position: relative;
+}
+
 .song-form::after {
   content: '';
   position: absolute;
@@ -253,6 +262,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 32px;
     row-gap: 24px;
+  }
+  
+  .song-form {
+    padding: 40px 30px 30px;
   }
 }
 
@@ -275,6 +288,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   
   .song-form__header {
     margin-bottom: 40px;
+  }
+  
+  .song-form__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-top: 0;
   }
 }
 
