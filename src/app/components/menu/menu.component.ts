@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, HostL
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { LoadingService } from '../../services/loading.service';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-menu',
