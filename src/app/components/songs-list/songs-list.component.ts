@@ -33,4 +33,8 @@ export class SongsListComponent implements OnInit {
   onAddSong(): void {
     this.router.navigate(['/songs/new']);
   }
+  
+  onViewSong(songId: string): void {
+    this.router.navigate(['/songs', songId]);
+  }
 }

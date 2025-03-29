@@ -1,6 +1,6 @@
 <div class="songs-container">
   <div class="songs-list">
-    <div *ngFor="let song of songs" class="song-item">
+    <div *ngFor="let song of songs" class="song-item" (click)="onViewSong(song.id)">
       <div class="song-image">
         <img [src]="song.poster" [alt]="song.title">
       </div>

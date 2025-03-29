@@ -19,7 +19,7 @@
   </header>
 
   <!-- Menú móvil (visible solo cuando se abre) -->
-  <app-menu *ngIf="isMobile" 
+  <app-menu *ngIf="isMobile && isMenuOpen" 
             class="mobile-menu" 
             [class.open]="isMenuOpen" 
             [activeMenu]="currentView" 

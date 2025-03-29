@@ -30,6 +30,11 @@ export class AppComponent implements OnInit {
     this.isDesktop = width >= 1024;
     this.isTablet = width >= 768 && width < 1024;
     this.isMobile = width < 768;
+    
+    // Cerrar el menú si cambiamos a modo móvil
+    if (this.isMobile && this.isMenuOpen) {
+      this.closeMenu();
+    }
   }
 
   toggleMenu() {
