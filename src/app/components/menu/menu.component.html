@@ -1,20 +1,20 @@
 <!-- Menú lateral -->
 <div class="menu-container">
   <div class="menu-header">
-    <h2>Menu</h2>
+    <h2>{{ 'menu.title' | transloco }}</h2>
     <button class="close-menu" (click)="closeMenu()">✕</button>
   </div>
   <ul class="menu-options">
     <li [class.active]="activeMenu === 'songs'" (click)="selectMenu('canciones')">
-      <a>Canciones</a>
+      <a>{{ 'menu.items.songs' | transloco }}</a>
       <span class="arrow-icon">→</span>
     </li>
     <li [class.active]="activeMenu === 'artistas'" (click)="selectMenu('artistas')">
-      <a>Artistas</a>
+      <a>{{ 'menu.items.artists' | transloco }}</a>
       <span class="arrow-icon">→</span>
     </li>
     <li [class.active]="activeMenu === 'companias'" (click)="selectMenu('companias')">
-      <a>Compañías discográficas</a>
+      <a>{{ 'menu.items.recordCompanies' | transloco }}</a>
       <span class="arrow-icon">→</span>
     </li>
   </ul>

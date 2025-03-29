@@ -24,6 +24,21 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "src/assets/i18n",
+                "output": "/assets/i18n/"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "i18n",
+                "output": "/i18n/"
               }
             ],
             "styles": [
@@ -83,6 +98,16 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*.json",
+                "input": "src/assets/i18n",
+                "output": "/assets/i18n/"
               }
             ],
             "styles": [
