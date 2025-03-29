@@ -7,6 +7,7 @@ import { CountriesService } from '../../services/countries.service';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-new-song',
@@ -18,7 +19,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatIconModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    RouterModule
+    RouterModule,
+    TranslocoModule
   ],
   templateUrl: './new-song.component.html',
   styleUrls: ['./new-song.component.css']

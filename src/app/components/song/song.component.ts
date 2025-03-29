@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Song } from '../../models/song.model';
 import { SongsService } from '../../services/songs.service';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-song',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslocoModule],
   templateUrl: './song.component.html',
   styleUrl: './song.component.css'
 })
@@ -18,10 +19,20 @@ export class SongComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private songsService: SongsService
-  ) {}
+    private songsService: SongsService,
+    private translocoService: TranslocoService
+  ) {
+    // Verificar que el servicio está disponible
+    console.log('TranslocoService injected:', !!this.translocoService);
+  }
   
   ngOnInit() {
+    // Verificar que las traducciones funcionan
+    console.log('Prueba de traducción:', this.translocoService.translate('song.details.year'));
+    
+    // Verificar el idioma activo
+    console.log('Idioma activo:', this.translocoService.getActiveLang());
+    
     // Obtener el ID de la canción de los parámetros de la ruta
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
@@ -52,7 +63,7 @@ export class SongComponent implements OnInit {
   
   // Eliminar la canción
   deleteSong() {
-    if (confirm('¿Estás seguro de que deseas eliminar esta canción?')) {
+    if (confirm(this.getDeleteConfirmMessage())) {
       this.songsService.deleteSong(this.songId).subscribe({
         next: () => {
           console.log('Canción eliminada correctamente');
@@ -63,6 +74,11 @@ export class SongComponent implements OnInit {
         }
       });
     }
+  }
+  
+  // Obtener el mensaje de confirmación de eliminación desde las traducciones
+  private getDeleteConfirmMessage(): string {
+    return this.translocoService.translate('song.actions.deleteConfirm');
   }
   
   // Volver a la página anterior

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslocoModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -62,7 +63,6 @@ export class MenuComponent implements OnChanges {
    * Cierra el menú y emite el evento
    */
   closeMenu(): void {
-    console.log('Cerrando menú');
     this.menuClosed.emit();
   }
 }
