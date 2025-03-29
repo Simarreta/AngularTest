@@ -6,7 +6,7 @@ import { LoadingService } from '../../services/loading.service';
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslocoModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -101,7 +101,6 @@ export class MenuComponent implements OnChanges {
    * Cierra el menú y emite el evento
    */
   closeMenu(): void {
-    console.log('Cerrando menú');
     this.menuClosed.emit();
   }
 }

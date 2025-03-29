@@ -1,0 +1,39 @@
+{
+  "_comment": "Este archivo está en la carpeta public",
+  "song": {
+    "backButton": "Volver",
+    "title": "Título",
+    "artist": "Artista",
+    "genre": "Género",
+    "company": "Compañía discográfica",
+    "country": "País",
+    "selectCountry": "Seleccione un país",
+    "year": "Año",
+    "duration": "Duración (segundos)",
+    "rating": "Puntuación",
+    "poster": "URL de imagen",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "details": {
+      "genre": "Género",
+      "recordCompany": "Compañía discográfica",
+      "country": "País",
+      "year": "Año"
+    },
+    "actions": {
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "deleteConfirm": "¿Estás seguro de que deseas eliminar esta canción?"
+    }
+  },
+  "menu": {
+    "title": "Menú de Navegación",
+    "close": "Cerrar",
+    "items": {
+      "songs": "Lista de Canciones",
+      "artists": "Lista de Artistas",
+      "recordCompanies": "Compañías discográficas"
+    }
+  },
+  "loading": "Cargando..."
+} 
