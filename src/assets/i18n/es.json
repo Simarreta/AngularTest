@@ -1,0 +1,44 @@
+{
+  "app": {
+    "title": "MusicApp",
+    "loading": "Cargando...",
+    "buttons": {
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "back": "Volver"
+    },
+    "form": {
+      "title": "Título",
+      "artist": "Artista",
+      "genre": "Género",
+      "company": "Compañía discográfica",
+      "country": "País",
+      "year": "Año",
+      "duration": "Duración",
+      "rating": "Puntuación",
+      "poster": "URL del Poster",
+      "required": "Este campo es obligatorio",
+      "min": "El valor debe ser al menos {{value}}",
+      "max": "El valor debe ser como máximo {{value}}"
+    },
+    "songs": {
+      "title": "Canciones",
+      "new": "Nueva canción",
+      "details": "Detalles de la canción",
+      "edit": "Editar canción",
+      "delete": "Eliminar canción",
+      "deletedSuccessfully": "Canción eliminada correctamente",
+      "errorDeleting": "Error al eliminar la canción"
+    }
+  },
+  "menu": {
+    "title": "Menú",
+    "items": {
+      "songs": "Canciones",
+      "artists": "Artistas",
+      "recordCompanies": "Compañías discográficas"
+    }
+  }
+} 

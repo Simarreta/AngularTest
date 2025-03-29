@@ -1,0 +1,44 @@
+{
+  "app": {
+    "title": "MusicApp",
+    "loading": "Loading...",
+    "buttons": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "back": "Back"
+    },
+    "form": {
+      "title": "Title",
+      "artist": "Artist",
+      "genre": "Genre",
+      "company": "Record Label",
+      "country": "Country",
+      "year": "Year",
+      "duration": "Duration",
+      "rating": "Rating",
+      "poster": "Poster URL",
+      "required": "This field is required",
+      "min": "Value must be at least {{value}}",
+      "max": "Value must be at most {{value}}"
+    },
+    "songs": {
+      "title": "Songs",
+      "new": "New Song",
+      "details": "Song Details",
+      "edit": "Edit Song",
+      "delete": "Delete Song",
+      "deletedSuccessfully": "Song deleted successfully",
+      "errorDeleting": "Error deleting song"
+    }
+  },
+  "menu": {
+    "title": "Menu",
+    "items": {
+      "songs": "Songs",
+      "artists": "Artists",
+      "recordCompanies": "Record Companies"
+    }
+  }
+} 
