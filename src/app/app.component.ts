@@ -2,12 +2,13 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
-import { TranslocoModule } from '@ngneat/transloco';
+import { GlobalLoaderComponent } from './components/global-loader/global-loader.component';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MenuComponent, TranslocoModule],
+  imports: [CommonModule, RouterOutlet, MenuComponent, GlobalLoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -19,7 +20,10 @@ export class AppComponent implements OnInit {
   isMenuOpen: boolean = false;
   currentView: string = 'home';
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private loadingService: LoadingService
+  ) { }
 
   ngOnInit() {
     this.checkScreenSize();
@@ -48,8 +52,20 @@ export class AppComponent implements OnInit {
 
   navigateTo(view: string) {
     this.currentView = view;
+    
     if (view === 'canciones') {
-      this.router.navigate(['/songs']);
+      // Mostrar spinner antes de navegar a canciones
+      this.loadingService.showLoading('Cargando lista de canciones...', 'spinner', true);
+      
+      // Esperar un poco para que se vea el spinner
+      setTimeout(() => {
+        this.router.navigate(['/songs']);
+        
+        // Mantener el spinner visible por un tiempo
+        setTimeout(() => {
+          this.loadingService.hideLoading();
+        }, 1500);
+      }, 500);
     } else {
       this.router.navigate(['/']);
     }
