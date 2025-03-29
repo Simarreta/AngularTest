@@ -6,7 +6,7 @@
 
 .songs__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -18,6 +18,9 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .songs__item:hover {
@@ -29,6 +32,7 @@
   width: 100%;
   height: 200px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .songs__image {
@@ -44,32 +48,51 @@
 
 .songs__details {
   padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .songs__title {
   margin: 0 0 10px 0;
   font-size: 1.2rem;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .songs__info {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
   font-size: 0.9rem;
   color: #666;
+  margin-top: auto;
+  width: 100%;
+}
+
+.songs__info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.songs__info-row:first-child {
+  margin-bottom: 2px;
 }
 
 .songs__genre {
   color: #2196F3;
   font-weight: 500;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.songs__year {
-  color: #666;
-}
-
-.songs__duration {
+.songs__year, .songs__duration {
   color: #666;
 }
 
@@ -78,15 +101,36 @@
   align-items: center;
   gap: 4px;
   color: #FFC107;
+  margin-left: auto;
 }
 
 .songs__star {
   color: #FFC107;
 }
 
-@media (max-width: 768px) {
+/* Específico para tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
   .songs__list {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .songs__image-container {
+    height: 180px;
+  }
+}
+
+/* Específico para desktop */
+@media (min-width: 1024px) {
+  .songs__list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .songs__image-container {
+    height: 160px;
+  }
+  
+  .songs__item {
+    min-height: 300px;
   }
 }
 

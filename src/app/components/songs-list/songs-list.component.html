@@ -5,14 +5,20 @@
         <img class="songs__image" [src]="song.poster" [alt]="song.title">
       </div>
       <div class="songs__details">
-        <h3 class="songs__title">{{ song.title }}</h3>
+        <h3 class="songs__title" [title]="song.title">{{ song.title }}</h3>
         <div class="songs__info">
-          <span class="songs__genre">{{ song.genre.join(', ') }}</span>
-          <span class="songs__year">{{ song.year }}</span>
-          <span class="songs__duration">{{ (song.duration / 60).toFixed(2) }} min</span>
-          <div class="songs__rating">
-            <span class="songs__star">⭐</span>
-            <span class="songs__rating-value">{{ song.rating.toFixed(1) }}</span>
+          <div class="songs__info-row">
+            <span class="songs__genre">{{ song.genre.join(', ') }}</span>
+          </div>
+          <div class="songs__info-row">
+            <span class="songs__year">{{ song.year }}</span>
+            <span class="songs__duration">{{ (song.duration / 60).toFixed(2) }} min</span>
+          </div>
+          <div class="songs__info-row">
+            <div class="songs__rating">
+              <span class="songs__star">⭐</span>
+              <span class="songs__rating-value">{{ song.rating.toFixed(1) }}</span>
+            </div>
           </div>
         </div>
       </div>
