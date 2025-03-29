@@ -2,11 +2,12 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
 import { MenuComponent } from './components/menu/menu.component';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MenuComponent],
+  imports: [CommonModule, RouterOutlet, MenuComponent, TranslocoModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
