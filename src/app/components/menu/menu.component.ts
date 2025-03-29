@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-menu',
@@ -15,6 +16,11 @@ export class MenuComponent implements OnChanges {
   
   @Output() menuSelected = new EventEmitter<string>();
   @Output() menuClosed = new EventEmitter<void>();
+  
+  constructor(
+    private router: Router,
+    private loadingService: LoadingService
+  ) {}
   
   // Detectar cambios de tamaño de la ventana
   @HostListener('window:resize')
@@ -50,12 +56,45 @@ export class MenuComponent implements OnChanges {
    */
   selectMenu(option: string): void {
     this.activeMenu = option;
-    this.menuSelected.emit(option);
     
-    // En dispositivos móviles, siempre cerramos el menú después de seleccionar
+    // Si selecciona "canciones", mostrar el spinner primero
+    if (option === 'canciones') {
+      this.showSpinnerAndNavigate('/songs');
+    } else {
+      this.menuSelected.emit(option);
+      
+      // En dispositivos móviles, siempre cerramos el menú después de seleccionar
+      if (window.innerWidth < 768) {
+        this.closeMenu();
+      }
+    }
+  }
+  
+  /**
+   * Mostrar el spinner y luego navegar
+   */
+  showSpinnerAndNavigate(route: string): void {
+    // Mostrar el spinner global con overlay completo
+    this.loadingService.showLoading('Cargando lista de canciones...', 'spinner', true);
+    
+    // Cerrar el menú primero si es necesario
     if (window.innerWidth < 768) {
       this.closeMenu();
     }
+    
+    // Emitir el evento para que la aplicación sepa qué opción se seleccionó
+    this.menuSelected.emit('canciones');
+    
+    // Esperar un poco antes de navegar para que se vea el spinner
+    setTimeout(() => {
+      // Navegar a la ruta
+      this.router.navigate([route]);
+      
+      // Mantener el spinner visible durante un tiempo adicional para dar sensación de carga
+      setTimeout(() => {
+        this.loadingService.hideLoading();
+      }, 1000);
+    }, 500);
   }
   
   /**
