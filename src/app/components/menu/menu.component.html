@@ -1,24 +1,24 @@
 <!-- Menú lateral -->
-<div class="menu-container">
-  <div class="menu-header">
-    <h2>{{ 'menu.title' | transloco }}</h2>
-    <button class="close-menu" (click)="closeMenu()">✕</button>
+<div class="menu">
+  <div class="menu__header">
+    <h2 class="menu__title">{{ 'menu.title' | transloco }}</h2>
+    <button class="menu__close-button" (click)="closeMenu()">✕</button>
   </div>
-  <ul class="menu-options">
-    <li [class.active]="activeMenu === 'songs'" (click)="selectMenu('canciones')">
-      <a>{{ 'menu.items.songs' | transloco }}</a>
-      <span class="arrow-icon">→</span>
+  <ul class="menu__list">
+    <li class="menu__item" [class.menu__item--active]="activeMenu === 'songs'" (click)="selectMenu('canciones')">
+      <a class="menu__link">{{ 'menu.items.songs' | transloco }}</a>
+      <span class="menu__arrow">→</span>
     </li>
-    <li [class.active]="activeMenu === 'artistas'" (click)="selectMenu('artistas')">
-      <a>{{ 'menu.items.artists' | transloco }}</a>
-      <span class="arrow-icon">→</span>
+    <li class="menu__item" [class.menu__item--active]="activeMenu === 'artistas'" (click)="selectMenu('artistas')">
+      <a class="menu__link">{{ 'menu.items.artists' | transloco }}</a>
+      <span class="menu__arrow">→</span>
     </li>
-    <li [class.active]="activeMenu === 'companias'" (click)="selectMenu('companias')">
-      <a>{{ 'menu.items.recordCompanies' | transloco }}</a>
-      <span class="arrow-icon">→</span>
+    <li class="menu__item" [class.menu__item--active]="activeMenu === 'companias'" (click)="selectMenu('companias')">
+      <a class="menu__link">{{ 'menu.items.recordCompanies' | transloco }}</a>
+      <span class="menu__arrow">→</span>
     </li>
   </ul>
 </div>
 
 <!-- Overlay para cuando el menú está abierto (siempre presente, solo cambia su visibilidad) -->
-<div class="menu-overlay" [class.active]="isMenuOpen" (click)="closeMenu()"></div>
+<div class="menu-overlay" [class.menu-overlay--active]="isMenuOpen" (click)="closeMenu()"></div>

@@ -1,24 +1,24 @@
-<div class="songs-container">
-  <div class="songs-list">
-    <div *ngFor="let song of songs" class="song-item" (click)="onViewSong(song.id)">
-      <div class="song-image">
-        <img [src]="song.poster" [alt]="song.title">
+<div class="songs">
+  <div class="songs__list">
+    <div *ngFor="let song of songs" class="songs__item" (click)="onViewSong(song.id)">
+      <div class="songs__image-container">
+        <img class="songs__image" [src]="song.poster" [alt]="song.title">
       </div>
-      <div class="song-details">
-        <h3>{{ song.title }}</h3>
-        <div class="song-info">
-          <span class="genre">{{ song.genre.join(', ') }}</span>
-          <span class="year">{{ song.year }}</span>
-          <span class="duration">{{ (song.duration / 60).toFixed(2) }} min</span>
-          <div class="rating">
-            <span class="star">⭐</span>
-            <span>{{ song.rating.toFixed(1) }}</span>
+      <div class="songs__details">
+        <h3 class="songs__title">{{ song.title }}</h3>
+        <div class="songs__info">
+          <span class="songs__genre">{{ song.genre.join(', ') }}</span>
+          <span class="songs__year">{{ song.year }}</span>
+          <span class="songs__duration">{{ (song.duration / 60).toFixed(2) }} min</span>
+          <div class="songs__rating">
+            <span class="songs__star">⭐</span>
+            <span class="songs__rating-value">{{ song.rating.toFixed(1) }}</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <button class="add-song-button" (click)="onAddSong()">
-    <span class="plus-icon">+</span>
+  <button class="songs__add-button" (click)="onAddSong()">
+    <span class="songs__add-icon">+</span>
   </button>
 </div>

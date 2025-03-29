@@ -1,17 +1,17 @@
-.songs-container {
+.songs {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.songs-list {
+.songs__list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
 }
 
-.song-item {
+.songs__item {
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -20,39 +20,39 @@
   cursor: pointer;
 }
 
-.song-item:hover {
+.songs__item:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.song-image {
+.songs__image-container {
   width: 100%;
   height: 200px;
   overflow: hidden;
 }
 
-.song-image img {
+.songs__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.song-item:hover .song-image img {
+.songs__item:hover .songs__image {
   transform: scale(1.05);
 }
 
-.song-details {
+.songs__details {
   padding: 15px;
 }
 
-.song-details h3 {
+.songs__title {
   margin: 0 0 10px 0;
   font-size: 1.2rem;
   color: #333;
 }
 
-.song-info {
+.songs__info {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -60,37 +60,37 @@
   color: #666;
 }
 
-.genre {
+.songs__genre {
   color: #2196F3;
   font-weight: 500;
 }
 
-.year {
+.songs__year {
   color: #666;
 }
 
-.duration {
+.songs__duration {
   color: #666;
 }
 
-.rating {
+.songs__rating {
   display: flex;
   align-items: center;
   gap: 4px;
   color: #FFC107;
 }
 
-.star {
+.songs__star {
   color: #FFC107;
 }
 
 @media (max-width: 768px) {
-  .songs-list {
+  .songs__list {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
 
-.add-song-button {
+.songs__add-button {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -109,23 +109,19 @@
   z-index: 1000;
 }
 
-.add-song-button:hover {
+.songs__add-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(33, 150, 243, 0.4);
 }
 
-.plus-icon {
+.songs__add-icon {
   font-size: 1.5rem;
   font-weight: bold;
   line-height: 1;
 }
 
-.button-text {
-  font-weight: 500;
-}
-
 @media (max-width: 600px) {
-  .add-song-button {
+  .songs__add-button {
     padding: 10px 20px;
     font-size: 0.9rem;
   }
