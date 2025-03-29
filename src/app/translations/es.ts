@@ -15,14 +15,14 @@ export const ES_TRANSLATIONS = {
     "save": "Guardar",
     "newSong": "Nueva Canción",
     "placeholders": {
-      "title": "Ingrese el título de la canción",
-      "artist": "Ingrese el nombre del artista",
-      "genre": "Añada un género",
-      "company": "Añada una compañía discográfica",
-      "year": "Seleccione el año",
-      "duration": "Ingrese la duración en segundos",
-      "rating": "Puntuación de 0 a 5",
-      "poster": "Ingrese la URL de la imagen"
+      "title": "Título...",
+      "artist": "Nombre del artista...",
+      "genre": "Agregar género...",
+      "company": "Nombre de compañía...",
+      "year": "Año",
+      "duration": "Duración en seg.",
+      "rating": "0-5",
+      "poster": "URL de la imagen"
     },
     "details": {
       "genre": "Género",

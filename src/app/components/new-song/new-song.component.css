@@ -1,57 +1,75 @@
-.new-song-container {
-  max-width: 600px;
+.song-form {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px 20px 20px;
+  padding: 40px 20px 80px;
   background-color: #fff;
   min-height: calc(100vh - 80px);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
-.form-header {
+.song-form__header {
   display: flex;
   align-items: center;
   gap: 20px;
-  margin: 30px;
+  margin-bottom: 30px;
   padding-bottom: 15px;
   border-bottom: 1px solid #eee;
 }
 
-.back-link {
+.song-form__back-link {
   color: #2196F3;
   text-decoration: none;
   cursor: pointer;
   font-size: 14px;
 }
 
-h1 {
+.song-form__title {
   margin: 0;
   color: #333;
   font-size: 24px;
   font-weight: normal;
 }
 
-.form-group {
-  margin-bottom: 32px;
+.song-form__container {
+  width: 100%;
 }
 
-.form-group label {
+.song-form__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.song-form__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.song-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.song-form__label {
   display: block;
   color: #333;
   font-size: 16px;
   margin-bottom: 12px;
 }
 
-.input-container {
+.song-form__input-container {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.input-container mat-spinner {
+.song-form__input-container mat-spinner {
   margin: 8px 0;
 }
 
-.form-group input,
-.form-group select {
+.song-form__input,
+.song-form__select {
   width: 100%;
   padding: 12px 16px;
   font-size: 16px;
@@ -60,22 +78,29 @@ h1 {
   background: #fff;
   color: #333;
   transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.form-group input::placeholder {
+.song-form__input::placeholder {
   color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 1;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.song-form__input:focus,
+.song-form__select:focus {
   outline: none;
   border-color: #2196F3;
   box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
 }
 
-.add-button {
+.song-form__add-button {
   position: absolute;
-  right: 12px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -83,48 +108,30 @@ h1 {
   color: #999;
   font-size: 24px;
   cursor: pointer;
-  padding: 8px;
-  min-width: 40px;
-  min-height: 40px;
+  padding: 4px;
+  min-width: 36px;
+  min-height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: all 0.2s ease;
+  z-index: 2;
 }
 
-.add-button:hover {
+.song-form__add-button:hover {
   background-color: rgba(0, 0, 0, 0.04);
   color: #2196F3;
 }
 
-@media (max-width: 768px) {
-  .add-button {
-    right: 8px;
-    min-width: 36px;
-    min-height: 36px;
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .add-button {
-    right: 4px;
-    min-width: 32px;
-    min-height: 32px;
-    font-size: 18px;
-    padding: 6px;
-  }
-}
-
-.chips-container {
+.song-form__chips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 8px;
 }
 
-.chip {
+.song-form__chip {
   display: inline-flex;
   align-items: center;
   background-color: #f5f5f5;
@@ -134,34 +141,11 @@ h1 {
   color: #333;
 }
 
-.remove-chip {
+.song-form__chip-remove {
   margin-left: 8px;
   color: #666;
   cursor: pointer;
   font-size: 18px;
-}
-
-select {
-  width: 100%;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  transition: border-color 0.2s ease;
-}
-
-select:focus {
-  outline: none;
-  border-color: #2196F3;
-}
-
-select:hover {
-  border-color: #999;
-}
-
-select option {
-  padding: 8px;
 }
 
 /* Eliminar los spinners de los inputs numéricos */
@@ -178,11 +162,11 @@ input[type="number"] {
 /* Estilos específicos para el input de tipo date */
 input[type="date"] {
   position: relative;
-  padding-right: 30px; /* Espacio para el icono */
+  padding-right: 40px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0; /* Ocultamos el icono por defecto */
+  opacity: 0;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -191,15 +175,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 
-.calendar-icon {
+.song-form__calendar-icon {
   position: absolute;
-  right: 0;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #999;
   font-size: 20px;
-  pointer-events: none; /* Para que no interfiera con el click en el input */
+  pointer-events: none;
 }
 
-.form-actions {
+.song-form__actions {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -208,7 +194,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-top: 1px solid #e0e0e0;
 }
 
-.button {
+.song-form__button {
   min-width: 100px;
   padding: 12px 24px;
   border-radius: 8px;
@@ -222,30 +208,85 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   justify-content: center;
 }
 
-.button-secondary {
+.song-form__button--secondary {
   background-color: transparent;
   color: #666;
   border: none;
 }
 
-.button-secondary:hover {
+.song-form__button--secondary:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-.button-primary {
+.song-form__button--primary {
   background-color: #2196F3;
   color: white;
   border: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
-.button-primary:hover {
+.song-form__button--primary:hover {
   background-color: #1976D2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.button-primary:disabled {
+.song-form__button--primary:disabled {
   background-color: #BDBDBD;
   box-shadow: none;
   cursor: not-allowed;
+}
+
+.song-form::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 16px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(240,240,240,1));
+  border-radius: 0 0 8px 8px;
+}
+
+/* Responsive para tablet (2 columnas) */
+@media (min-width: 768px) {
+  .song-form__grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 32px;
+    row-gap: 24px;
+  }
+}
+
+/* Responsive para desktop (4 columnas) */
+@media (min-width: 1024px) {
+  .song-form {
+    padding: 40px;
+  }
+
+  .song-form__grid {
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 32px;
+    row-gap: 32px;
+  }
+  
+  .song-form__container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .song-form__header {
+    margin-bottom: 40px;
+  }
+}
+
+/* Acortar los textos placeholder en dispositivos pequeños */
+@media (max-width: 767px) {
+  .song-form__input::placeholder {
+    font-size: 14px;
+  }
+  
+  .song-form__input,
+  .song-form__select {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
 }

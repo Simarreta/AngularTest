@@ -1,100 +1,103 @@
-<div class="new-song-container">
-  <div class="form-header">
-    <a class="back-link" routerLink="/songs">
+<div class="song-form">
+  <div class="song-form__header">
+    <a class="song-form__back-link" routerLink="/songs">
       ← {{ 'song.backButton' | transloco }}
     </a>
-    <h1>{{ 'song.newSong' | transloco }}</h1>
+    <h1 class="song-form__title">{{ 'song.newSong' | transloco }}</h1>
   </div>
 
-  <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="song-form">
-    <div class="form-group">
-      <label for="title">{{ 'song.title' | transloco }}</label>
-      <input id="title" type="text" formControlName="title" [placeholder]="'song.placeholders.title' | transloco">
-    </div>
-
-    <div class="form-group">
-      <label for="artist">{{ 'song.artist' | transloco }}</label>
-      <input id="artist" type="text" formControlName="artist" [placeholder]="'song.placeholders.artist' | transloco">
-    </div>
-
-    <div class="form-group">
-      <label for="genre">{{ 'song.genre' | transloco }}</label>
-      <div class="input-container">
-        <input id="genre" type="text" formControlName="genre" [placeholder]="'song.placeholders.genre' | transloco">
-        <button type="button" class="add-button" (click)="addGenre()">+</button>
+  <form [formGroup]="songForm" (ngSubmit)="onSubmit()" class="song-form__container">
+    <div class="song-form__grid">
+      <div class="song-form__field">
+        <label class="song-form__label" for="title">{{ 'song.title' | transloco }}</label>
+        <input class="song-form__input" id="title" type="text" formControlName="title" [placeholder]="'song.placeholders.title' | transloco">
       </div>
-      <div class="chips-container" *ngIf="genres.length > 0">
-        <div class="chip" *ngFor="let genre of genres">
-          {{ genre }}
-          <span class="remove-chip" (click)="removeGenre(genre)">×</span>
+
+      <div class="song-form__field">
+        <label class="song-form__label" for="artist">{{ 'song.artist' | transloco }}</label>
+        <input class="song-form__input" id="artist" type="text" formControlName="artist" [placeholder]="'song.placeholders.artist' | transloco">
+      </div>
+
+      <div class="song-form__field">
+        <label class="song-form__label" for="genre">{{ 'song.genre' | transloco }}</label>
+        <div class="song-form__input-container">
+          <input class="song-form__input" id="genre" type="text" formControlName="genre" [placeholder]="'song.placeholders.genre' | transloco">
+          <button type="button" class="song-form__add-button" (click)="addGenre()">+</button>
+        </div>
+        <div class="song-form__chips" *ngIf="genres.length > 0">
+          <div class="song-form__chip" *ngFor="let genre of genres">
+            {{ genre }}
+            <span class="song-form__chip-remove" (click)="removeGenre(genre)">×</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="company">{{ 'song.company' | transloco }}</label>
-      <div class="input-container">
-        <input id="company" type="text" formControlName="company" [placeholder]="'song.placeholders.company' | transloco">
-        <button type="button" class="add-button" (click)="addCompany()">+</button>
-      </div>
-      <div class="chips-container" *ngIf="companies.length > 0">
-        <div class="chip" *ngFor="let company of companies">
-          {{ company }}
-          <span class="remove-chip" (click)="removeCompany(company)">×</span>
+      <div class="song-form__field">
+        <label class="song-form__label" for="company">{{ 'song.company' | transloco }}</label>
+        <div class="song-form__input-container">
+          <input class="song-form__input" id="company" type="text" formControlName="company" [placeholder]="'song.placeholders.company' | transloco">
+          <button type="button" class="song-form__add-button" (click)="addCompany()">+</button>
+        </div>
+        <div class="song-form__chips" *ngIf="companies.length > 0">
+          <div class="song-form__chip" *ngFor="let company of companies">
+            {{ company }}
+            <span class="song-form__chip-remove" (click)="removeCompany(company)">×</span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="country">{{ 'song.country' | transloco }}</label>
-      <div class="input-container">
-        <ng-container *ngIf="isLoadingCountries; else countrySelect">
-          <mat-spinner diameter="24"></mat-spinner>
-        </ng-container>
-        <ng-template #countrySelect>
-          <select id="country" formControlName="country">
-            <option value="">{{ 'song.selectCountry' | transloco }}</option>
-            <option *ngFor="let country of countries" [value]="country.code">
-              {{country.name}}
-            </option>
-          </select>
-        </ng-template>
+      <div class="song-form__field">
+        <label class="song-form__label" for="country">{{ 'song.country' | transloco }}</label>
+        <div class="song-form__input-container">
+          <ng-container *ngIf="isLoadingCountries; else countrySelect">
+            <mat-spinner diameter="24"></mat-spinner>
+          </ng-container>
+          <ng-template #countrySelect>
+            <select class="song-form__select" id="country" formControlName="country">
+              <option value="">{{ 'song.selectCountry' | transloco }}</option>
+              <option *ngFor="let country of countries" [value]="country.code">
+                {{country.name}}
+              </option>
+            </select>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="song-form__field">
+        <label class="song-form__label" for="year">{{ 'song.year' | transloco }}</label>
+        <div class="song-form__input-container">
+          <input class="song-form__input" 
+                 id="year" 
+                 type="date" 
+                 formControlName="year" 
+                 [max]="maxDate"
+                 min="1900-01-01"
+                 [placeholder]="'song.placeholders.year' | transloco">
+          <mat-icon class="song-form__calendar-icon">calendar_today</mat-icon>
+        </div>
+      </div>
+
+      <div class="song-form__field">
+        <label class="song-form__label" for="duration">{{ 'song.duration' | transloco }}</label>
+        <input class="song-form__input" id="duration" type="number" formControlName="duration" [placeholder]="'song.placeholders.duration' | transloco">
+      </div>
+
+      <div class="song-form__field">
+        <label class="song-form__label" for="rating">{{ 'song.rating' | transloco }}</label>
+        <input class="song-form__input" id="rating" type="number" formControlName="rating" [placeholder]="'song.placeholders.rating' | transloco">
+      </div>
+
+      <div class="song-form__field song-form__field--full">
+        <label class="song-form__label" for="poster">{{ 'song.poster' | transloco }}</label>
+        <input class="song-form__input" id="poster" type="url" formControlName="poster" [placeholder]="'song.placeholders.poster' | transloco">
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="year">{{ 'song.year' | transloco }}</label>
-      <div class="input-container">
-        <input id="year" 
-               type="date" 
-               formControlName="year" 
-               [max]="maxDate"
-               min="1900-01-01"
-               [placeholder]="'song.placeholders.year' | transloco">
-        <mat-icon class="calendar-icon">calendar_today</mat-icon>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="duration">{{ 'song.duration' | transloco }}</label>
-      <input id="duration" type="number" formControlName="duration" [placeholder]="'song.placeholders.duration' | transloco">
-    </div>
-
-    <div class="form-group">
-      <label for="rating">{{ 'song.rating' | transloco }}</label>
-      <input id="rating" type="number" formControlName="rating" [placeholder]="'song.placeholders.rating' | transloco">
-    </div>
-
-    <div class="form-group">
-      <label for="poster">{{ 'song.poster' | transloco }}</label>
-      <input id="poster" type="url" formControlName="poster" [placeholder]="'song.placeholders.poster' | transloco">
-    </div>
-
-    <div class="form-actions">
-      <button type="button" class="button button-secondary" (click)="onCancel()">
+    <div class="song-form__actions">
+      <button type="button" class="song-form__button song-form__button--secondary" (click)="onCancel()">
         {{ 'song.cancel' | transloco }}  
       </button>
-      <button type="submit" class="button button-primary" [disabled]="!isFormValid()">
+      <button type="submit" class="song-form__button song-form__button--primary" [disabled]="!isFormValid()">
         {{ 'song.save' | transloco }}
       </button>
     </div>
